@@ -14,7 +14,7 @@ class fraction {
         fraction operator+ (const fraction& f2);
         fraction operator* (const fraction& f2);
 
-        operator double() const {
+        operator double() const { //转换函数
             return (double) numerator / denominator;
         }
 
