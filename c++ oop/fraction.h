@@ -6,7 +6,7 @@
 
 class fraction {
     public:
-        fraction (int numerator, int denominator = 1)
+        explicit fraction (int numerator, int denominator = 1) //explicit阻止隐式转换
         :numerator(numerator), denominator(denominator) 
         {this->reduction();}
 
@@ -22,10 +22,11 @@ class fraction {
             return std::to_string(numerator)+"/"+std::to_string(denominator);
         }
     private:
-        int numerator;
-        int denominator;
-        fraction& reduction ();
+        int numerator; //分子
+        int denominator; //分母
+        fraction& reduction (); //约分
 };
+
 //inline 内联函数
 inline int
 gcd (int a, int b) {
