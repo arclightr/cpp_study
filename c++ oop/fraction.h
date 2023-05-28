@@ -6,12 +6,12 @@
 
 class fraction {
     public:
-        fraction (int numerator = 0, int denominator = 1)
+        fraction (int numerator, int denominator = 1)
         :numerator(numerator), denominator(denominator) 
         {this->reduction();}
 
         fraction& operator+= (const fraction& f); //如果要把operator在类内声明或者定义，只可以有一个参数
-        const friend fraction operator+ (const fraction& f1, const fraction& f2); //友元函数
+        fraction operator+ (const fraction& f2);
         fraction operator* (const fraction& f2);
 
         operator double() const {
@@ -48,11 +48,11 @@ fraction::operator+= (const fraction& f) {
     return *this;
 }
 
-inline const fraction
-operator+ (const fraction& f1, const fraction& f2) {
-    fraction f_ans;
-    f_ans.numerator = f1.numerator * f2.denominator + f1.denominator * f2.numerator;
-    f_ans.denominator = f1.denominator * f2.denominator;
+inline fraction
+fraction::operator+ (const fraction& f2) {
+    fraction f_ans(0);
+    f_ans.numerator = this->numerator * f2.denominator + this->denominator * f2.numerator;
+    f_ans.denominator = this->denominator * f2.denominator;
     return f_ans.reduction();
 }
 
